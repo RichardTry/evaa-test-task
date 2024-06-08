@@ -1,15 +1,11 @@
 import {
-    Address,
     beginCell,
     Cell,
-    Contract,
-    contractAddress,
     ContractProvider,
     internal as internal_relaxed,
     MessageRelaxed,
     OutAction,
     OutActionSendMsg,
-    Sender,
     SendMode,
     storeMessageRelaxed,
     storeOutList,
@@ -121,14 +117,6 @@ function createInternalTransfer(opts: {
         value: opts.value,
         body: createInternalTransferBody(opts)
     });
-    /*beginCell()
-        .storeUint(0x10, 6)
-        .storeAddress(address)
-        .storeCoins(opts.value)
-        .storeUint(0, 107)
-        .storeSlice(body.asSlice())
-        .endCell();
-        */
 }
 
 function packActions(messages: OutAction[], value: bigint = toNano('1'), query_id: HighloadQueryId) {

@@ -5,6 +5,7 @@ import { address, Address, toNano, SendMode, internal, OutActionSendMsg } from "
 import { mnemonicToWalletKey } from "@ton/crypto";
 import { Dictionary, beginCell, Cell, TonClient } from "@ton/ton";
 import { readFileSync } from "fs";
+import { rpcEndpoint, HIGHLOAD_CODE, SUBWALLET_ID, DEFAULT_TIMEOUT, maxShift, HIGHLOAD_JETTON_WALLET, HIGHLOAD_ADDRESS, JETTON_DECIMALS } from "./consts";
 
 const getRandom = (min:number, max:number) => {
     return Math.random() * (max - min) + min;
@@ -13,18 +14,6 @@ const getRandom = (min:number, max:number) => {
 export const getRandomInt = (min: number, max: number) => {
     return Math.round(getRandom(min, max));
 }
-
-const rpcEndpoint = 'https://testnet.toncenter.com/api/v2/jsonRPC'
-const HIGHLOAD_CODE = Cell.fromBase64('te6ccgECEAEAAigAART/APSkE/S88sgLAQIBIAIDAgFIBAUB9vLUgwjXGNEh+QDtRNDT/9Mf9AT0BNM/0xXR+CMhoVIguY4SM234IySqAKESuZJtMt5Y+CMB3lQWdfkQ8qEG0NMf1NMH0wzTCdM/0xXRUWi68qJRWrrypvgjKqFSULzyowT4I7vyo1MEgA30D2+hmdAk1yHXCgDyZJEw4g4AeNAg10vAAQHAYLCRW+EB0NMDAXGwkVvg+kAw+CjHBbORMODTHwGCEK5C5aS6nYBA1yHXTPgqAe1V+wTgMAIBIAYHAgJzCAkCASAMDQARrc52omhrhf/AAgEgCgsAGqu27UTQgQEi1yHXCz8AGKo77UTQgwfXIdcLHwAbuabu1E0IEBYtch1wsVgA5bi/Ltou37IasJAoQJsO1E0IEBINch9AT0BNM/0xXRBY4b+CMloVIQuZ8ybfgjBaoAFaESuZIwbd6SMDPikjAz4lIwgA30D2+hntAh1yHXCgCVXwN/2zHgkTDiWYAN9A9voZzQAdch1woAk3/bMeCRW+JwgB/lMJgA30D2+hjhPQUATXGNIAAfJkyFjPFs+DAc8WjhAwyCTPQM+DhAlQBaGlFM9A4vgAyUA5gA30FwTIy/8Tyx/0ABL0ABLLPxLLFcntVPgPIdDTAAHyZdMCAXGwkl8D4PpAAdcLAcAA8qX6QDH6ADH0AfoAMfoAMYBg1yHTAAEPACDyZdIAAZPUMdGRMOJysfsA');
-const SUBWALLET_ID = 239;
-const DEFAULT_TIMEOUT = 128;
-
-const maxKeyCount   = (1 << 13);
-const maxShift      = maxKeyCount - 1;
-
-const HIGHLOAD_JETTON_WALLET = address("kQA6eZO4J134_wBqD80tkw6-9pjufOkS1XlvA878YxEbeFtt")
-const HIGHLOAD_ADDRESS = address("0QCm6iMpPU-29lHXjIZDc41J7XHXufeKq3zMUSVqC8OvEWFF")
-const JETTON_DECIMALS: number = 9
 
 async function main() {
     configDotenv();
